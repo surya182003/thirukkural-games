@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>ஸ்ரீ கிருஷ்ணா கலை மற்றும் அறிவியல் கல்லூரி </title>
+<style>
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 80px;
+}
+
+.box {
+    border: 3px solid black;
+    background-color:darkviolet;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+    text-align: center;
+    color:white;
+    font-weight: bold;
+}
+
+.boxes {
+    border: 3px solid black;
+    background-color:white;
+    border-radius: .5em;
+    padding: 10px;
+    text-align: center;
+    color:white;
+    font-weight: bold;
+}
+
+.box.over {
+    border: 3px dotted #666;
+}
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+var dragSrcEl = null;
+
+function handleDragStart(e) {
+    this.style.opacity = '0.4';
+
+    dragSrcEl = this;
+
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+}
+
+function handleDragOver(e) {
+    if (e.preventDefault) {
+    e.preventDefault();
+    } 
+
+    e.dataTransfer.dropEffect = 'move';
+
+    return false;
+}
+
+function handleDragEnter(e) {
+    this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+    this.classList.remove('over');
+}
+
+function handleDrop(e) {
+    if (e.stopPropagation) {
+    e.stopPropagation(); // stops the browser from redirecting.
+    }
+
+    if (dragSrcEl != this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+
+    return false;
+}
+
+function handleDragEnd(e) {
+    this.style.opacity = '1';
+
+    items.forEach(function (item) {
+    item.classList.remove('over');
+    });
+}
+
+
+let items = document.querySelectorAll('.container .box');
+items.forEach(function(item) {
+    item.addEventListener('dragstart', handleDragStart, false);
+    item.addEventListener('dragenter', handleDragEnter, false);
+    item.addEventListener('dragover', handleDragOver, false);
+    item.addEventListener('dragleave', handleDragLeave, false);
+    item.addEventListener('drop', handleDrop, false);
+    item.addEventListener('dragend', handleDragEnd, false);
+});
+});
+
+</script>
+
+</head>
+<body style="background: url('valluvarfocus.jpg');" >
+<h1 align = "center" > ஸ்ரீ கிருஷ்ணா கலை மற்றும் அறிவியல் கல்லூரி</font></h1> <br>
+    <h2 align = "center" class="boxes"> <font face = " unicode" size = 5 color="Red" align = "center" > தமிழ் மன்றம்</font></h2>
+    <h3 align = "center" class="boxes"> <font face = " unicode" size = 5 color="Red" align = "center" > குறள் 01 </font></h3>
+        <div class="container"> 
+        <div draggable="true" class="box">தொழாஅர்</div>
+        <div draggable="true" class="box">வாலறிவன்</div>
+        <div draggable="true" class="box">எனின்</div>
+        <div draggable="true" class="box">கற்றதனால்</div>
+        <div draggable="true" class="box">நற்றாள்</div>
+        <div draggable="true" class="box">ஆய</div>
+        <div draggable="true" class="box">பயனென்கொல்</div>
+    </div>
+	
+<h2 align = "center"> <font face = " unicode" size = 5 color="Red" align = "center"class="boxes" > <a href="test.html">NEXT</a></font></h2>
+    <!--கற்றதனால் ஆய பயனென்கொல் வாலறிவன் நற்றாள் தொழாஅர் எனின்-->
+</body>
+</html>
